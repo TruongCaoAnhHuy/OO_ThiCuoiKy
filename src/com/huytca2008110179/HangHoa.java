@@ -140,18 +140,18 @@ public abstract class HangHoa {
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
         String strDongia = numberFormat.format(dongia);
-        
+    
         return "Mã hàng: "+maHH+", Tên hàng: "+tenHH+", Số lượng tồn: "+soLuongton+", Đơn giá(/sản phẩm): "+strDongia;
     } 
     
-    public String inTT(){
+    public String inTTtien(){
 
         tongTien = dongia*soLuongton;
 
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
         String strDongia = numberFormat.format(dongia);
-        String strTongtien = numberFormat.format(dongia);
+        String strTongtien = numberFormat.format(tongTien);
         
         return "Mã hàng: "+maHH+", Tên hàng: "+tenHH+", Số lượng tồn: "+soLuongton+", Đơn giá(/sản phẩm): "+strDongia+", Tổng tiền: "+strTongtien;
     }

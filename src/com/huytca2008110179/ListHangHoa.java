@@ -1,5 +1,7 @@
 package com.huytca2008110179;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,7 +21,7 @@ public class ListHangHoa extends HangHoa {
     HangHoaDM hdm = new HangHoaDM();
     HangHoaSS hss= new HangHoaSS();
     
-    public ListHangHoa() {
+    public void readyList() {
         listTP.add(new HangHoaTP("TP01", "Bánh mì", 5, 3000, htp.setStringNXS(2022, 4, 14), htp.setStringHSD(2022, 4, 18), "tiệm bánh ABC"));
         listTP.add(new HangHoaTP("TP02", "Trứng", 20, 5000, htp.setStringNXS(2022, 3, 17), htp.setStringHSD(2022, 9, 17), "Select"));
         listTP.add(new HangHoaTP("TP03", "Thịt hộp", 5, 3000, htp.setStringNXS(2022, 2, 25), htp.setStringHSD(2022, 5, 25), "Select"));
@@ -36,41 +38,6 @@ public class ListHangHoa extends HangHoa {
         list.addAll(listSS);        
     }
 
-    //thêm hàng hóa
-    public void Add(){
-                int choose2;
-                System.out.println("-> 1. Hàng thực phẩm");
-                System.out.println("-> 2. Hàng điện máy");
-                System.out.println("-> 3. Hàng sành sứ");
-                System.out.print("Chọn loại hàng: ");
-                choose2 = sc.nextInt();
-                if(choose2 == 1){
-                    HangHoaTP htp = new HangHoaTP();
-                    htp.nhap();
-                    listTP.add(new HangHoaTP(htp.getMaHH(), htp.getTenHH(), htp.getSoLuongton(), htp.getDongia(), htp.getNSX(), htp.getHSD(), htp.getNhaCungcap()));
-                }
-                if(choose2 == 2){
-                    HangHoaDM hdm = new HangHoaDM();
-                    hdm.nhap();
-                    listDM.add(new HangHoaDM(hdm.getMaHH(), hdm.getTenHH(), hdm.getSoLuongton(), hdm.getDongia(), hdm.getTgBaohanh(), hdm.getCongSuat()));
-                }
-                if(choose2 == 2){
-                    HangHoaSS hss = new HangHoaSS();
-                    hss.nhap();
-                    listSS.add(new HangHoaSS(hss.getMaHH(), hss.getTenHH(), hss.getSoLuongton(), hss.getDongia(), hss.getNNK(), hss.getnhaSX()));
-                }
-    }
-
-    //thống kê
-    public void Total(){
-        //System.out.println("---Loại hàng thực phẩm---");
-        for (int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i).toString());
-        }
-        System.out.println("Tổng số hàng hóa: "+list.size()+" hàng hóa");
-    }
-
-
     public int findID(){
         System.out.print("Nhập mã hàng: ");
         String timID = sc.nextLine();
@@ -83,7 +50,46 @@ public class ListHangHoa extends HangHoa {
             }
         return x;
     } 
-    
+
+    public Double sumPrice(){
+        double sumTP = 0;
+        for (HangHoa hangHoa : list) {
+            sumTP = hangHoa.getDongia()*getSoLuongton(); 
+        }
+        return sumTP;
+    }
+
+
+    //*********************************************************************************** *//
+
+
+    //thêm hàng hóa
+    public void Add(HangHoa hangHoa){
+                int choose2;
+                System.out.println("-> 1. Hàng thực phẩm");
+                System.out.println("-> 2. Hàng điện máy");
+                System.out.println("-> 3. Hàng sành sứ");
+                System.out.print("Chọn loại hàng: ");
+                choose2 = sc.nextInt();
+                if(choose2 == 1){
+                    HangHoaTP htp = new HangHoaTP();
+                    htp.nhap();
+                    list.add(new HangHoaTP(htp.getMaHH(), htp.getTenHH(), htp.getSoLuongton(), htp.getDongia(), htp.getNSX(), htp.getHSD(), htp.getNhaCungcap()));
+                }
+                if(choose2 == 2){
+                    HangHoaDM hdm = new HangHoaDM();
+                    hdm.nhap();
+                    list.add(new HangHoaDM(hdm.getMaHH(), hdm.getTenHH(), hdm.getSoLuongton(), hdm.getDongia(), hdm.getTgBaohanh(), hdm.getCongSuat()));
+                }
+                if(choose2 == 2){
+                    HangHoaSS hss = new HangHoaSS();
+                    hss.nhap();
+                    list.add(new HangHoaSS(hss.getMaHH(), hss.getTenHH(), hss.getSoLuongton(), hss.getDongia(), hss.getNNK(), hss.getnhaSX()));
+                }
+                System.out.println("Đã thêm hàng hóa!");
+                sc.nextLine();
+    }
+
     //xóa hàng hóa
     public void Remove(){
         int x = findID();
@@ -94,6 +100,7 @@ public class ListHangHoa extends HangHoa {
         else{
             System.out.println("Không có mã hàng này này!!");
         }
+        sc.nextLine();
     }
 
     //sửa hàng hóa
@@ -300,12 +307,13 @@ public class ListHangHoa extends HangHoa {
         }
     }
 
-    public Double sumPrice(){
-        double sumTP = 0;
-        for (HangHoa hangHoa : list) {
-            sumTP = hangHoa.getDongia()*getSoLuongton(); 
+    //thống kê
+    public void Total(){
+        //System.out.println("---Loại hàng thực phẩm---");
+        for (int i = 0; i < list.size(); i++){
+            System.out.println(list.get(i).toString());
         }
-        return sumTP;
+        System.out.println("Tổng số hàng hóa: "+list.size()+" hàng hóa");
     }
 
     //tổng giá trị
@@ -321,78 +329,16 @@ public class ListHangHoa extends HangHoa {
         String strSum = numberFormat.format(sum);
 
         for (int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i).toString());
+            System.out.println(list.get(i).inTTtien());
         }
 
         System.out.println("Tổng giá trị tất cả hàng hóa: "+strSum);
     }
 
-    //tổng giá trị theo loại
-    public void TotalPriceType(){
-        System.out.println("   -> 1. Theo loại hàng \"Điện máy\"");
-        System.out.println("   -> 2. Theo loại hàng \"Thực phẩm\"");
-        System.out.println("   -> 3. Theo loại hàng \"Sành sứ\"");
-        System.out.print("Chọn loại hàng: ");
-        int timType = sc.nextInt();  
-
-        if(timType == 1){
-            double sum = sumPrice();
-            for (HangHoa hangHoa : listTP) {
-                sum += hangHoa.getDongia();
-            }
-
-            Locale localeVN = new Locale("vi", "VN");
-            NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
-            String strSum = numberFormat.format(sum);
-
-            for (int i = 0; i < listTP.size(); i++){
-                System.out.println(listTP.get(i).toString());
-            }
-
-            System.out.println("Tổng giá trị hàng hóa \"Thực phẩm\": "+strSum);
-        }
-
-        if(timType == 2){
-            double sum = sumPrice();
-            for (HangHoa hangHoa : listDM) {
-                sum += hangHoa.getDongia();
-            }
-
-            Locale localeVN = new Locale("vi", "VN");
-            NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
-            String strSum = numberFormat.format(sum);
-
-            for (int i = 0; i < listDM.size(); i++){
-                System.out.println(listTP.get(i).toString());
-            }
-
-            System.out.println("Tổng giá trị hàng hóa \"Điện máy\": "+strSum);
-
-        }
-
-        if(timType == 3){
-            double sum = sumPrice();
-            for (HangHoa hangHoa : listSS) {
-                sum += hangHoa.getDongia();
-            }
-
-            Locale localeVN = new Locale("vi", "VN");
-            NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
-            String strSum = numberFormat.format(sum);
-
-            for (int i = 0; i < listSS.size(); i++){
-                System.out.println(listSS.get(i).toString());
-            }
-
-            System.out.println("Tổng giá trị hàng hóa \"Sành sứ\": "+strSum);
-
-        }
-    }
-
-    //thống kê theo loại
+    //thống kê số lượng theo loại
     public void TotalType(){
-        System.out.println("   -> 1. Theo loại hàng \"Điện máy\"");
-        System.out.println("   -> 2. Theo loại hàng \"Thực phẩm\"");
+        System.out.println("   -> 1. Theo loại hàng \"Thực phẩm\"");
+        System.out.println("   -> 2. Theo loại hàng \"Điện máy\"");
         System.out.println("   -> 3. Theo loại hàng \"Sành sứ\"");
         System.out.print("Chọn loại hàng: ");
         int timType = sc.nextInt();  
