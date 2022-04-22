@@ -1,0 +1,99 @@
+HƯỚNG DẪN SỬ DỤNG
+Tổng quan về phần mềm : đây là một phần mềm quản lí hàng hóa trong cửa hàng 
+phần mềm có tổng cộng 10 chức năng cụ thể sẽ được nói ở phần bên dưới.
+
+- Hướng dẫn sử dụng các chức năng trong chương trình
+sau khi mở chương trình ta có Menu như sau : 
+
+=====================MENU======================
+- 1. Nhập thêm hàng hóa                       -    
+- 2. Xóa thông tin hàng hóa                   -         
+- 3. Sửa thông tin hàng hóa                   -        
+- 4. Tìm kiếm hàng hóa theo mã                -     
+- 5. Tìm kiếm hàng hóa theo loại  		    -
+- 6. Sắp xếp hàng hóa theo giá                -
+- 7. Sắp xếp hàng hóa theo số lượng           -  
+- 8. Thống kê tổng số hàng hóa                -
+- 9. Thống kê số lượng từng loại hàng hóa     -            
+- 10 THống kê giá trị tất cả hàng hóa         -       
+- 0. Thoát.                                   - 
+===============================================
+Chọn chức năng:
+
+Chọn chức năng: nhập dữ liệu để chọn chức ( 0 - 10 ) chỉ cho phép kiểu dữ liệu : int.
+
+**lưu ý 
+trong phần mềm đã có sẵn 10 hàng hóa phục vụ mục đích test
+
+chức năng đầu tiên Tương ứng với 1 
+---------------------------------------------------------------------------------------------------------------
+- 1. Nhập thêm hàng hóa
+mô tả chức năng :
+chức năng giúp cho người dùng có thể thêm 1 hàng hóa vào trong danh sách hiện tại. 
+
+một số lưu ý :
+- Mã hàng phải là kiểu dữ liệu String  , mã hàng hóa không được trùng với mã hàng hóa có trong danh sách.
+- Tên hàng phải là kiểu dữ liệu String , tên hàng hóa không được trùng với tên hàng hóa đã có trong danh sách.
+- Số Lượng phải là kiểu dữ liệu int , số lượng không được < 0
+- Đơn Giá phải là kiểu dữ liệu Double , đơn giá không dược < 0
+TH1 : đối với hàng hóa là thực phẩm:
+- Ngày sản xuất phải là kiểu dữ liệu String , phải tuân theo dạng dd/mm/yyyy.
+- Ngày hết hạn phải là kiểu dữ liệu String , phải tuân theo dạng dd/mm/yyyy.
+* lưu ý
+- nếu ngày hết hạn mà có trước ngày sản xuất thì hàng hóa sẽ không hợp lý và không được thêm vào danh sách.
+- nhà cung cấp phải là kiểu dữ liệu String.
+TH2 : đối với hàng hóa là sành sứ 
+- Ngày nhập khẩu phải là kiểu dữ liệu String , phải tuân theo dạng dd/mm/yyyy. 
+- Nhà Sản Xuất phải là kiểu dữ liệu String.
+TH3 : đối với hàng hòa là điện máy 
+- Kw phải là kiểu dữ liệu double , Kw không được < 0
+- Thời Gian Bảo hành phải là kiểu dữ liệu int , Thời Gian bao hành không được < 0 
+*** nếu bạn không nhập đúng theo quy tắc , bạn sẽ nhận được thông báo lỗi và sản phẩm của bạn sẽ không được thêm vào.
+
+- 2. Xóa thông tin hàng hóa
+mô tả chức năng :
+Chức năng giúp cho người dùng có thể xóa một hàng hóa trong danh sách hiện tại.
+* lưu ý bạn phải nhập Mã hàng Hóa để chúng tôi có thể xóa hàng hóa 
+mã hàng phải thuộc kiểu dữ liệu String.
+
+- 3. Sửa thông tin hàng hóa 
+mô tả chức năng :
+Chức năng giúp cho người dùng có thể sửa một hàng hóa trong danh sách hiện tại.( cụ thể là tên , số lượng , đơn giá ).
+* lưu ý bạn phải nhập Mã hàng Hóa để chúng tôi có thể sửa hàng hóa 
+mã hàng phải thuộc kiểu dữ liệu String.
+
+- 4. Tìm kiếm hàng hóa theo mã 
+mô tả chức năng :
+Chức năng tìm kiếm hàng hóa có trong kho bằng cách sử dụng Mã hàng của hàng hóa.
+* lưu ý mã hàng phải thuộc kiểu dữ liệu String.
+
+- 5. Tìm kiếm hàng hóa theo loại
+mô tả chức năng :
+Chức năng tìm kiếm hàng hóa có trong kho bằng cách sử dụng loại hàng của hàng hóa.
+
+* lưu ý bạn phải nhập Mã hàng Hóa để phân biệt các loại hàng, mã hàng phải thuộc kiểu dữ liệu String.
+
+- 6. Sắp xếp hàng hóa theo giá
+mô tả chức năng : 
+Chức năng giúp cho người dùng sắp xếp các hàng hóa trong danh sách theo hướng tăng dần hoặc giảm dần theo đơn giá và sau đó xuất ra màn hình.
+* lưu ý: chọn 1/tăng dần hoặc 2/giảm dần
+
+- 7. Sắp xếp hàng hóa theo số lượng : 
+Chức năng giúp cho người dùng sắp xếp các hàng hóa trong danh sách theo hướng tăng dần hoặc giảm dần theo đơn số lượng và sau đó xuất ra màn hình.
+* lưu ý: chọn 1/tăng dần hoặc 2/giảm dần
+
+- 8. Thống kê tổng số hàng hóa 
+mô tả chức năng : 
+chức năng giúp người dùng in danh sách hiện tại để xem có dang có bao nhiêu sản phẩm trong dánh sách.
+
+- 9. Thống kê số lượng từng loại hàng hóa
+mô tả chức năng :
+chức năng giúp người dùng in danh sách hiện tại để xem có dang có bao nhiêu sản phẩm mỗi loại trong dánh sách.
+
+- 10. Thống kê giá trị tất cả hàng hóa
+mô tả chức năng : 
+chức năng giúp cho người dùng biết được tổng giá trị hàng hóa có trong danh sách
+
+- 0. Thoát
+mô tả chức năng :
+dừng chương trình!!!
